@@ -29,9 +29,9 @@ export const SentimentChart = () => {
           {
             data: counts,
             backgroundColor: [
-              'hsl(142, 76%, 36%)', // success - positive
-              'hsl(38, 92%, 50%)',  // warning - neutral
-              'hsl(0, 84.2%, 60.2%)', // destructive - negative
+              'hsl(142, 76%, 36%)',
+              'hsl(38, 92%, 50%)',
+              'hsl(0, 84.2%, 60.2%)',
             ],
             borderColor: [
               'hsl(142, 76%, 46%)',
@@ -52,7 +52,6 @@ export const SentimentChart = () => {
   useEffect(() => {
     fetchSentimentData();
 
-    // Set up realtime subscription
     const channel = supabase
       .channel('feedback-changes')
       .on(

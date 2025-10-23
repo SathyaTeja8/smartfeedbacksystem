@@ -40,14 +40,9 @@ export const FeedbackForm = ({ onFeedbackSubmitted }: FeedbackFormProps) => {
 
       if (error) throw error;
 
-      const sentimentColor = 
-        data.sentiment === 'positive' ? 'success' :
-        data.sentiment === 'negative' ? 'destructive' : 'warning';
-
       toast({
         title: "Feedback submitted!",
-        description: `Sentiment: ${data.sentiment} (Score: ${data.score?.toFixed(2)})`,
-        variant: sentimentColor === 'success' ? 'default' : 'destructive',
+        description: `Sentiment detected: ${data.sentiment}`,
       });
 
       setMessage("");
