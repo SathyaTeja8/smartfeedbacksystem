@@ -13,10 +13,10 @@ export const Home = () => {
           FeedbackAI
         </h1>
         <div className="flex gap-3">
-          <Button variant="ghost" onClick={() => navigate("/auth")}>
+          <Button variant="ghost" onClick={() => navigate("/login")}>
             Login
           </Button>
-          <Button onClick={() => navigate("/auth?mode=register")}>
+          <Button onClick={() => navigate("/register")}>
             Get Started
           </Button>
         </div>
@@ -30,14 +30,6 @@ export const Home = () => {
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Transform customer feedback into actionable insights with real-time sentiment analysis
           </p>
-          <div className="flex gap-4 justify-center pt-6">
-            <Button size="lg" onClick={() => navigate("/auth?mode=register")} className="shadow-[var(--shadow-glow)]">
-              Start Free Trial
-            </Button>
-            <Button size="lg" variant="outline" onClick={() => navigate("/dashboard")}>
-              View Demo
-            </Button>
-          </div>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-20">
@@ -88,7 +80,7 @@ export const Home = () => {
             <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
               Join thousands of companies using FeedbackAI to understand their customers better
             </p>
-            <Button size="lg" onClick={() => navigate("/auth?mode=register")}>
+            <Button size="lg" onClick={() => navigate("/register")}>
               Create Your Account
             </Button>
           </CardContent>

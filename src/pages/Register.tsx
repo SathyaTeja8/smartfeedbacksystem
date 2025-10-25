@@ -4,13 +4,11 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { supabase } from "@/integrations/supabase/client";
 import { useState, useEffect } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2 } from "lucide-react";
 
-export const Auth = () => {
-  const [searchParams] = useSearchParams();
-  const [isLogin, setIsLogin] = useState(searchParams.get("mode") !== "register");
+export const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [displayName, setDisplayName] = useState("");
@@ -33,39 +31,24 @@ export const Auth = () => {
     setLoading(true);
 
     try {
-      if (isLogin) {
-        const { error } = await supabase.auth.signInWithPassword({
-          email,
-          password,
-        });
-
-        if (error) throw error;
-
-        toast({
-          title: "Welcome back!",
-          description: "Successfully logged in.",
-        });
-        navigate("/dashboard");
-      } else {
-        const { error } = await supabase.auth.signUp({
-          email,
-          password,
-          options: {
-            emailRedirectTo: `${window.location.origin}/dashboard`,
-            data: {
-              display_name: displayName,
-            },
+      const { error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          emailRedirectTo: `${window.location.origin}/dashboard`,
+          data: {
+            display_name: displayName,
           },
-        });
+        },
+      });
 
-        if (error) throw error;
+      if (error) throw error;
 
-        toast({
-          title: "Account created!",
-          description: "Welcome to FeedbackAI. Redirecting...",
-        });
-        navigate("/dashboard");
-      }
+      toast({
+        title: "Account created!",
+        description: "Welcome to FeedbackAI. Redirecting...",
+      });
+      navigate("/dashboard");
     } catch (error: any) {
       toast({
         variant: "destructive",
@@ -82,28 +65,24 @@ export const Auth = () => {
       <Card className="w-full max-w-md border-border/50 bg-card/50 backdrop-blur shadow-[var(--shadow-card)]">
         <CardHeader className="space-y-1">
           <CardTitle className="text-3xl text-center bg-[var(--gradient-primary)] bg-clip-text text-transparent">
-            {isLogin ? "Welcome Back" : "Create Account"}
+            Create Account
           </CardTitle>
           <CardDescription className="text-center">
-            {isLogin
-              ? "Enter your credentials to access your account"
-              : "Sign up to start analyzing feedback"}
+            Sign up to start analyzing feedback
           </CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
-            {!isLogin && (
-              <div className="space-y-2">
-                <Label htmlFor="displayName">Display Name</Label>
-                <Input
-                  id="displayName"
-                  placeholder="John Doe"
-                  value={displayName}
-                  onChange={(e) => setDisplayName(e.target.value)}
-                  required
-                />
-              </div>
-            )}
+            <div className="space-y-2">
+              <Label htmlFor="displayName">Display Name</Label>
+              <Input
+                id="displayName"
+                placeholder="John Doe"
+                value={displayName}
+                onChange={(e) => setDisplayName(e.target.value)}
+                required
+              />
+            </div>
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
               <Input
@@ -129,19 +108,17 @@ export const Auth = () => {
             </div>
             <Button type="submit" className="w-full" disabled={loading}>
               {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-              {isLogin ? "Sign In" : "Create Account"}
+              Create Account
             </Button>
           </form>
 
           <div className="mt-6 text-center text-sm">
             <button
               type="button"
-              onClick={() => setIsLogin(!isLogin)}
+              onClick={() => navigate("/login")}
               className="text-primary hover:underline"
             >
-              {isLogin
-                ? "Don't have an account? Sign up"
-                : "Already have an account? Sign in"}
+              Already have an account? Sign in
             </button>
           </div>
 
@@ -156,4 +133,4 @@ export const Auth = () => {
   );
 };
 
-export default Auth;
+export default Register;
