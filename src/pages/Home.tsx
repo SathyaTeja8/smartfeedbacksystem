@@ -13,6 +13,9 @@ export const Home = () => {
           FeedbackAI
         </h1>
         <div className="flex gap-3">
+          <Button variant="outline" onClick={() => navigate("/admin-login")}>
+            Admin Login
+          </Button>
           <Button variant="ghost" onClick={() => navigate("/login")}>
             Login
           </Button>
