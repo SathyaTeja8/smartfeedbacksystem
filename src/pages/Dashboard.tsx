@@ -59,23 +59,23 @@ export const Dashboard = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-secondary to-background">
       <div className="container mx-auto px-4 py-8">
-        <header className="mb-12 flex justify-between items-start">
+        <header className="mb-12 flex justify-between items-start animate-fade-in-up">
           <div>
-            <h1 className="text-4xl md:text-5xl font-bold bg-[var(--gradient-primary)] bg-clip-text text-transparent mb-2">
+            <h1 className="text-4xl md:text-5xl font-bold bg-[var(--gradient-primary)] bg-clip-text text-transparent mb-2 animate-pulse-glow">
               Feedback Analysis System
             </h1>
-            <p className="text-muted-foreground">
+            <p className="text-muted-foreground animate-fade-in">
               AI-powered sentiment analysis for real-time insights
             </p>
           </div>
           <div className="flex gap-3">
             {isAdmin && (
-              <Button variant="outline" onClick={() => navigate("/admin")}>
+              <Button variant="outline" onClick={() => navigate("/admin")} className="hover:scale-105 transition-transform animate-slide-in-right">
                 <Settings className="mr-2 h-4 w-4" />
                 Admin Panel
               </Button>
             )}
-            <Button variant="destructive" onClick={handleLogout}>
+            <Button variant="destructive" onClick={handleLogout} className="hover:scale-105 transition-transform">
               <LogOut className="mr-2 h-4 w-4" />
               Logout
             </Button>
@@ -83,11 +83,15 @@ export const Dashboard = () => {
         </header>
 
         <div className="grid lg:grid-cols-2 gap-8">
-          <FeedbackForm onFeedbackSubmitted={() => setRefreshKey(prev => prev + 1)} />
-          <SentimentChart key={refreshKey} />
+          <div className="animate-slide-in-left">
+            <FeedbackForm onFeedbackSubmitted={() => setRefreshKey(prev => prev + 1)} />
+          </div>
+          <div className="animate-slide-in-right">
+            <SentimentChart key={refreshKey} />
+          </div>
         </div>
 
-        <footer className="text-center text-muted-foreground text-sm mt-12 pb-8">
+        <footer className="text-center text-muted-foreground text-sm mt-12 pb-8 animate-fade-in">
           <p>Powered by AI sentiment analysis • Built with React & Lovable Cloud</p>
         </footer>
       </div>

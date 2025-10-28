@@ -12,7 +12,7 @@ serve(async (req) => {
   }
 
   try {
-    const { message, userId, isAnonymous } = await req.json();
+    const { message, userId, isAnonymous, category = 'general' } = await req.json();
     console.log('Analyzing sentiment for message:', message);
 
     const LOVABLE_API_KEY = Deno.env.get('LOVABLE_API_KEY');
@@ -84,7 +84,8 @@ serve(async (req) => {
         message,
         sentiment: sentimentData.sentiment,
         sentiment_score: sentimentData.score,
-        is_anonymous: isAnonymous || false
+        is_anonymous: isAnonymous || false,
+        category
       })
       .select()
       .single();

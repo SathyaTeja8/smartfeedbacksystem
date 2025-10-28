@@ -33,6 +33,7 @@ interface Feedback {
   sentiment_score: number;
   is_anonymous: boolean;
   user_id: string | null;
+  category: string;
 }
 
 export const Admin = () => {
@@ -151,26 +152,26 @@ export const Admin = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-secondary to-background">
       <div className="container mx-auto px-4 py-8">
-        <div className="flex justify-between items-center mb-8">
+        <div className="flex justify-between items-center mb-8 animate-fade-in-up">
           <div>
-            <h1 className="text-4xl font-bold bg-[var(--gradient-primary)] bg-clip-text text-transparent mb-2">
+            <h1 className="text-4xl font-bold bg-[var(--gradient-primary)] bg-clip-text text-transparent mb-2 animate-pulse-glow">
               Admin Panel
             </h1>
-            <p className="text-muted-foreground">Manage all feedback submissions</p>
+            <p className="text-muted-foreground animate-fade-in">Manage all feedback submissions</p>
           </div>
           <div className="flex gap-3">
-            <Button variant="outline" onClick={() => navigate("/dashboard")}>
+            <Button variant="outline" onClick={() => navigate("/dashboard")} className="hover:scale-105 transition-transform">
               <ArrowLeft className="mr-2 h-4 w-4" />
               Dashboard
             </Button>
-            <Button variant="destructive" onClick={handleLogout}>
+            <Button variant="destructive" onClick={handleLogout} className="hover:scale-105 transition-transform">
               <LogOut className="mr-2 h-4 w-4" />
               Logout
             </Button>
           </div>
         </div>
 
-        <Card className="border-border/50 bg-card/50 backdrop-blur shadow-[var(--shadow-card)]">
+        <Card className="border-border/50 bg-card/50 backdrop-blur shadow-[var(--shadow-card)] animate-scale-in hover:shadow-[var(--shadow-glow)] transition-all">
           <CardHeader>
             <CardTitle>All Feedback ({feedback.length})</CardTitle>
             <CardDescription>View and manage user feedback submissions</CardDescription>
@@ -181,6 +182,7 @@ export const Admin = () => {
                 <TableHeader>
                   <TableRow>
                     <TableHead>Date</TableHead>
+                    <TableHead>Category</TableHead>
                     <TableHead>Message</TableHead>
                     <TableHead>Sentiment</TableHead>
                     <TableHead>Score</TableHead>
@@ -189,14 +191,19 @@ export const Admin = () => {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {feedback.map((item) => (
-                    <TableRow key={item.id}>
+                  {feedback.map((item, index) => (
+                    <TableRow key={item.id} className="animate-fade-in" style={{ animationDelay: `${index * 50}ms` }}>
                       <TableCell className="whitespace-nowrap">
                         {new Date(item.created_at).toLocaleDateString()}
                       </TableCell>
+                      <TableCell>
+                        <Badge variant="outline" className="capitalize">
+                          {item.category || 'general'}
+                        </Badge>
+                      </TableCell>
                       <TableCell className="max-w-md truncate">{item.message}</TableCell>
                       <TableCell>
-                        <Badge variant={getSentimentColor(item.sentiment)}>
+                        <Badge variant={getSentimentColor(item.sentiment)} className="animate-scale-in">
                           {item.sentiment}
                         </Badge>
                       </TableCell>
@@ -211,6 +218,7 @@ export const Admin = () => {
                           variant="ghost"
                           size="icon"
                           onClick={() => setDeleteId(item.id)}
+                          className="hover:scale-110 transition-transform"
                         >
                           <Trash2 className="h-4 w-4 text-destructive" />
                         </Button>
@@ -219,7 +227,7 @@ export const Admin = () => {
                   ))}
                   {feedback.length === 0 && (
                     <TableRow>
-                      <TableCell colSpan={6} className="text-center py-8 text-muted-foreground">
+                      <TableCell colSpan={7} className="text-center py-8 text-muted-foreground animate-fade-in">
                         No feedback submitted yet
                       </TableCell>
                     </TableRow>
@@ -232,7 +240,7 @@ export const Admin = () => {
       </div>
 
       <AlertDialog open={!!deleteId} onOpenChange={() => setDeleteId(null)}>
-        <AlertDialogContent>
+        <AlertDialogContent className="animate-scale-in">
           <AlertDialogHeader>
             <AlertDialogTitle>Delete Feedback</AlertDialogTitle>
             <AlertDialogDescription>
@@ -240,8 +248,8 @@ export const Admin = () => {
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel>Cancel</AlertDialogCancel>
-            <AlertDialogAction onClick={() => deleteId && handleDelete(deleteId)}>
+            <AlertDialogCancel className="hover:scale-105 transition-transform">Cancel</AlertDialogCancel>
+            <AlertDialogAction onClick={() => deleteId && handleDelete(deleteId)} className="hover:scale-105 transition-transform">
               Delete
             </AlertDialogAction>
           </AlertDialogFooter>

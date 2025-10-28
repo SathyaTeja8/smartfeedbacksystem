@@ -16,6 +16,7 @@ export type Database = {
     Tables: {
       feedback: {
         Row: {
+          category: string | null
           created_at: string
           id: string
           is_anonymous: boolean | null
@@ -25,6 +26,7 @@ export type Database = {
           user_id: string | null
         }
         Insert: {
+          category?: string | null
           created_at?: string
           id?: string
           is_anonymous?: boolean | null
@@ -34,6 +36,7 @@ export type Database = {
           user_id?: string | null
         }
         Update: {
+          category?: string | null
           created_at?: string
           id?: string
           is_anonymous?: boolean | null
