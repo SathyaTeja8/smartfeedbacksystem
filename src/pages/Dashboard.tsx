@@ -1,5 +1,4 @@
 import { FeedbackForm } from "@/components/FeedbackForm";
-import { SentimentChart } from "@/components/SentimentChart";
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useNavigate } from "react-router-dom";
@@ -62,10 +61,10 @@ export const Dashboard = () => {
         <header className="mb-12 flex justify-between items-start animate-fade-in-up">
           <div>
             <h1 className="text-4xl md:text-5xl font-bold bg-[var(--gradient-primary)] bg-clip-text text-transparent mb-2 animate-pulse-glow">
-              Feedback Analysis System
+              Share Your Feedback
             </h1>
             <p className="text-muted-foreground animate-fade-in">
-              AI-powered sentiment analysis for real-time insights
+              Help us improve with your valuable insights
             </p>
           </div>
           <div className="flex gap-3">
@@ -82,13 +81,8 @@ export const Dashboard = () => {
           </div>
         </header>
 
-        <div className="grid lg:grid-cols-2 gap-8">
-          <div className="animate-slide-in-left">
-            <FeedbackForm onFeedbackSubmitted={() => setRefreshKey(prev => prev + 1)} />
-          </div>
-          <div className="animate-slide-in-right">
-            <SentimentChart key={refreshKey} />
-          </div>
+        <div className="max-w-2xl mx-auto animate-scale-in">
+          <FeedbackForm onFeedbackSubmitted={() => setRefreshKey(prev => prev + 1)} />
         </div>
 
         <footer className="text-center text-muted-foreground text-sm mt-12 pb-8 animate-fade-in">

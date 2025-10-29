@@ -14,6 +14,10 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2, Trash2, LogOut, ArrowLeft } from "lucide-react";
+import { SentimentChart } from "@/components/SentimentChart";
+import { CategoryChart } from "@/components/admin/CategoryChart";
+import { StatsCards } from "@/components/admin/StatsCards";
+import { UsersTable } from "@/components/admin/UsersTable";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -36,11 +40,26 @@ interface Feedback {
   category: string;
 }
 
+interface UserData {
+  id: string;
+  email: string;
+  display_name: string | null;
+  created_at: string;
+  feedback_count: number;
+}
+
 export const Admin = () => {
   const [feedback, setFeedback] = useState<Feedback[]>([]);
+  const [users, setUsers] = useState<UserData[]>([]);
   const [loading, setLoading] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
   const [deleteId, setDeleteId] = useState<string | null>(null);
+  const [stats, setStats] = useState({
+    totalUsers: 0,
+    totalFeedback: 0,
+    averageSentiment: 0.5,
+    feedbackToday: 0,
+  });
   const navigate = useNavigate();
   const { toast } = useToast();
 
@@ -76,8 +95,71 @@ export const Admin = () => {
 
       setIsAdmin(true);
       loadFeedback();
+      loadUsers();
+      loadStats();
     } catch (error) {
       navigate("/auth");
+    }
+  };
+
+  const loadUsers = async () => {
+    try {
+      const { data: profilesData, error: profilesError } = await supabase
+        .from("profiles")
+        .select("id, email, display_name, created_at");
+
+      if (profilesError) throw profilesError;
+
+      const usersWithFeedback = await Promise.all(
+        (profilesData || []).map(async (profile) => {
+          const { count } = await supabase
+            .from("feedback")
+            .select("*", { count: "exact", head: true })
+            .eq("user_id", profile.id);
+
+          return {
+            ...profile,
+            feedback_count: count || 0,
+          };
+        })
+      );
+
+      setUsers(usersWithFeedback);
+    } catch (error: any) {
+      console.error("Error loading users:", error);
+    }
+  };
+
+  const loadStats = async () => {
+    try {
+      const { count: userCount } = await supabase
+        .from("profiles")
+        .select("*", { count: "exact", head: true });
+
+      const { data: feedbackData, count: feedbackCount } = await supabase
+        .from("feedback")
+        .select("sentiment_score, created_at", { count: "exact" });
+
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      const feedbackToday = feedbackData?.filter(
+        (f) => new Date(f.created_at) >= today
+      ).length || 0;
+
+      const avgSentiment =
+        feedbackData && feedbackData.length > 0
+          ? feedbackData.reduce((sum, f) => sum + (f.sentiment_score || 0.5), 0) /
+            feedbackData.length
+          : 0.5;
+
+      setStats({
+        totalUsers: userCount || 0,
+        totalFeedback: feedbackCount || 0,
+        averageSentiment: avgSentiment,
+        feedbackToday,
+      });
+    } catch (error: any) {
+      console.error("Error loading stats:", error);
     }
   };
 
@@ -113,6 +195,7 @@ export const Admin = () => {
         description: "Feedback deleted successfully",
       });
       loadFeedback();
+      loadStats();
     } catch (error: any) {
       toast({
         variant: "destructive",
@@ -155,9 +238,9 @@ export const Admin = () => {
         <div className="flex justify-between items-center mb-8 animate-fade-in-up">
           <div>
             <h1 className="text-4xl font-bold bg-[var(--gradient-primary)] bg-clip-text text-transparent mb-2 animate-pulse-glow">
-              Admin Panel
+              Analytics Dashboard
             </h1>
-            <p className="text-muted-foreground animate-fade-in">Manage all feedback submissions</p>
+            <p className="text-muted-foreground animate-fade-in">Monitor feedback, users, and insights</p>
           </div>
           <div className="flex gap-3">
             <Button variant="outline" onClick={() => navigate("/dashboard")} className="hover:scale-105 transition-transform">
@@ -169,6 +252,21 @@ export const Admin = () => {
               Logout
             </Button>
           </div>
+        </div>
+
+        <StatsCards {...stats} />
+
+        <div className="grid lg:grid-cols-2 gap-8 mb-8">
+          <div className="animate-slide-in-left">
+            <SentimentChart />
+          </div>
+          <div className="animate-slide-in-right">
+            <CategoryChart />
+          </div>
+        </div>
+
+        <div className="mb-8">
+          <UsersTable users={users} />
         </div>
 
         <Card className="border-border/50 bg-card/50 backdrop-blur shadow-[var(--shadow-card)] animate-scale-in hover:shadow-[var(--shadow-glow)] transition-all">
