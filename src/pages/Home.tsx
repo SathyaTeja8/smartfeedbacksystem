@@ -70,24 +70,6 @@ export const Home = () => {
             <br />
             Make data-driven decisions with confidence.
           </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">
-            <Button 
-              size="lg"
-              onClick={() => navigate("/register")} 
-              className="text-lg px-8 py-6 hover:scale-110 transition-all duration-300 animate-pulse-glow bg-[var(--gradient-primary)] border-0 shadow-[var(--shadow-glow)]"
-            >
-              Start Free Trial
-            </Button>
-            <Button 
-              size="lg"
-              variant="outline"
-              onClick={() => navigate("/login")} 
-              className="text-lg px-8 py-6 hover:scale-105 transition-all duration-300 border-border/50 backdrop-blur hover:bg-card/50"
-            >
-              View Demo
-            </Button>
-          </div>
         </div>
 
         {/* Stats Section */}
