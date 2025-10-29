@@ -1,97 +1,222 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useNavigate } from "react-router-dom";
-import { Brain, MessageSquare, BarChart3, Shield } from "lucide-react";
+import { Brain, MessageSquare, BarChart3, Shield, Sparkles, Zap, TrendingUp, Users } from "lucide-react";
 
 export const Home = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-secondary to-background overflow-hidden">
-      <nav className="container mx-auto px-4 py-6 flex justify-between items-center animate-fade-in backdrop-blur-sm bg-background/30 rounded-lg mt-4">
-        <h1 className="text-2xl font-bold bg-[var(--gradient-primary)] bg-clip-text text-transparent animate-pulse-glow">
-          FeedbackAI
-        </h1>
-        <div className="flex gap-3">
-          <Button variant="outline" onClick={() => navigate("/admin-login")} className="hover:scale-105 transition-transform">
-            Admin Login
-          </Button>
-          <Button variant="ghost" onClick={() => navigate("/login")} className="hover:scale-105 transition-transform">
-            Login
-          </Button>
-          <Button onClick={() => navigate("/register")} className="hover:scale-105 transition-transform animate-pulse-glow">
-            Get Started
-          </Button>
+    <div className="min-h-screen bg-background relative overflow-hidden">
+      {/* Animated Background Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-primary/20 rounded-full blur-3xl animate-float" />
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/20 rounded-full blur-3xl animate-float [animation-delay:1s]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/10 rounded-full blur-3xl animate-pulse-glow" />
+      </div>
+
+      {/* Navigation */}
+      <nav className="relative container mx-auto px-4 py-6 animate-fade-in">
+        <div className="flex justify-between items-center backdrop-blur-xl bg-card/30 border border-border/50 rounded-2xl px-6 py-4 shadow-[var(--shadow-card)]">
+          <div className="flex items-center gap-2">
+            <div className="w-10 h-10 rounded-xl bg-[var(--gradient-primary)] flex items-center justify-center animate-pulse-glow">
+              <Sparkles className="w-5 h-5 text-primary-foreground" />
+            </div>
+            <h1 className="text-2xl font-bold bg-[var(--gradient-primary)] bg-clip-text text-transparent">
+              FeedbackAI
+            </h1>
+          </div>
+          <div className="flex gap-3">
+            <Button 
+              variant="outline" 
+              onClick={() => navigate("/admin-login")} 
+              className="hover:scale-105 hover:shadow-[var(--shadow-glow)] transition-all duration-300 border-border/50 backdrop-blur"
+            >
+              Admin Login
+            </Button>
+            <Button 
+              variant="ghost" 
+              onClick={() => navigate("/login")} 
+              className="hover:scale-105 transition-all duration-300"
+            >
+              Login
+            </Button>
+            <Button 
+              onClick={() => navigate("/register")} 
+              className="hover:scale-105 transition-all duration-300 animate-pulse-glow bg-[var(--gradient-primary)] border-0"
+            >
+              Get Started
+            </Button>
+          </div>
         </div>
       </nav>
 
-      <main className="container mx-auto px-4 py-20">
-        <div className="text-center mb-16 space-y-4 animate-fade-in-up">
-          <h1 className="text-5xl md:text-7xl font-bold bg-[var(--gradient-primary)] bg-clip-text text-transparent">
-            AI-Powered Feedback Analysis
+      {/* Hero Section */}
+      <main className="relative container mx-auto px-4 py-20">
+        <div className="text-center mb-20 space-y-6 animate-fade-in-up">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 backdrop-blur mb-4 animate-scale-in">
+            <Zap className="w-4 h-4 text-primary" />
+            <span className="text-sm font-medium text-primary">AI-Powered Intelligence</span>
+          </div>
+          
+          <h1 className="text-6xl md:text-8xl font-bold bg-[var(--gradient-primary)] bg-clip-text text-transparent leading-tight tracking-tight">
+            Transform Feedback
+            <br />
+            Into Insights
           </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto animate-fade-in">
-            Transform customer feedback into actionable insights with real-time sentiment analysis
+          
+          <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            Harness the power of AI to analyze customer sentiment in real-time.
+            <br />
+            Make data-driven decisions with confidence.
           </p>
-        </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-20">
-          <Card className="border-border/50 bg-card/50 backdrop-blur hover:shadow-[var(--shadow-glow)] transition-all duration-300 hover:scale-105 animate-fade-in-up hover:-translate-y-2">
-            <CardHeader>
-              <Brain className="w-12 h-12 text-primary mb-4 animate-float" />
-              <CardTitle>AI Analysis</CardTitle>
-              <CardDescription>
-                Advanced sentiment detection powered by machine learning
-              </CardDescription>
-            </CardHeader>
-          </Card>
-
-          <Card className="border-border/50 bg-card/50 backdrop-blur hover:shadow-[var(--shadow-glow)] transition-all duration-300 hover:scale-105 animate-fade-in-up [animation-delay:100ms] hover:-translate-y-2">
-            <CardHeader>
-              <MessageSquare className="w-12 h-12 text-accent mb-4 animate-float [animation-delay:200ms]" />
-              <CardTitle>Real-time Feedback</CardTitle>
-              <CardDescription>
-                Collect and analyze feedback instantly from any source
-              </CardDescription>
-            </CardHeader>
-          </Card>
-
-          <Card className="border-border/50 bg-card/50 backdrop-blur hover:shadow-[var(--shadow-glow)] transition-all duration-300 hover:scale-105 animate-fade-in-up [animation-delay:200ms] hover:-translate-y-2">
-            <CardHeader>
-              <BarChart3 className="w-12 h-12 text-primary mb-4 animate-float [animation-delay:400ms]" />
-              <CardTitle>Visual Insights</CardTitle>
-              <CardDescription>
-                Beautiful charts and analytics for data-driven decisions
-              </CardDescription>
-            </CardHeader>
-          </Card>
-
-          <Card className="border-border/50 bg-card/50 backdrop-blur hover:shadow-[var(--shadow-glow)] transition-all duration-300 hover:scale-105 animate-fade-in-up [animation-delay:300ms] hover:-translate-y-2">
-            <CardHeader>
-              <Shield className="w-12 h-12 text-accent mb-4 animate-float [animation-delay:600ms]" />
-              <CardTitle>Secure & Private</CardTitle>
-              <CardDescription>
-                Enterprise-grade security with full data encryption
-              </CardDescription>
-            </CardHeader>
-          </Card>
-        </div>
-
-        <Card className="mt-20 border-primary/20 bg-gradient-to-br from-primary/5 to-accent/5 backdrop-blur animate-scale-in hover:shadow-[var(--shadow-glow)] transition-all">
-          <CardContent className="p-12 text-center">
-            <h2 className="text-3xl font-bold mb-4 animate-fade-in">Ready to get started?</h2>
-            <p className="text-muted-foreground mb-6 max-w-xl mx-auto animate-fade-in-up">
-              Join thousands of companies using FeedbackAI to understand their customers better
-            </p>
-            <Button size="lg" onClick={() => navigate("/register")} className="hover:scale-110 transition-transform animate-pulse-glow">
-              Create Your Account
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">
+            <Button 
+              size="lg"
+              onClick={() => navigate("/register")} 
+              className="text-lg px-8 py-6 hover:scale-110 transition-all duration-300 animate-pulse-glow bg-[var(--gradient-primary)] border-0 shadow-[var(--shadow-glow)]"
+            >
+              Start Free Trial
             </Button>
+            <Button 
+              size="lg"
+              variant="outline"
+              onClick={() => navigate("/login")} 
+              className="text-lg px-8 py-6 hover:scale-105 transition-all duration-300 border-border/50 backdrop-blur hover:bg-card/50"
+            >
+              View Demo
+            </Button>
+          </div>
+        </div>
+
+        {/* Stats Section */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20 animate-scale-in">
+          {[
+            { icon: Users, label: "Active Users", value: "10K+", color: "text-primary" },
+            { icon: MessageSquare, label: "Feedback Analyzed", value: "1M+", color: "text-accent" },
+            { icon: TrendingUp, label: "Accuracy Rate", value: "99.9%", color: "text-success" },
+            { icon: Zap, label: "Response Time", value: "<100ms", color: "text-warning" },
+          ].map((stat, index) => (
+            <Card 
+              key={index}
+              className="border-border/50 bg-card/50 backdrop-blur hover:shadow-[var(--shadow-glow)] transition-all duration-500 hover:scale-105 hover:-translate-y-2 animate-fade-in-up group"
+              style={{ animationDelay: `${index * 100}ms` }}
+            >
+              <CardContent className="p-6 text-center">
+                <stat.icon className={`w-8 h-8 ${stat.color} mx-auto mb-3 animate-float group-hover:scale-110 transition-transform`} />
+                <div className="text-3xl font-bold bg-[var(--gradient-primary)] bg-clip-text text-transparent">
+                  {stat.value}
+                </div>
+                <div className="text-sm text-muted-foreground mt-1">{stat.label}</div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+
+        {/* Features Grid */}
+        <div className="mb-20">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-4 bg-[var(--gradient-primary)] bg-clip-text text-transparent">
+            Powerful Features
+          </h2>
+          <p className="text-center text-muted-foreground mb-12 text-lg">
+            Everything you need to understand your customers better
+          </p>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              {
+                icon: Brain,
+                title: "AI Analysis",
+                description: "Advanced sentiment detection powered by cutting-edge machine learning models",
+                gradient: "from-primary/20 to-primary/5"
+              },
+              {
+                icon: MessageSquare,
+                title: "Real-time Feedback",
+                description: "Collect and analyze feedback instantly from any source with live updates",
+                gradient: "from-accent/20 to-accent/5"
+              },
+              {
+                icon: BarChart3,
+                title: "Visual Insights",
+                description: "Beautiful charts and analytics dashboards for data-driven decisions",
+                gradient: "from-success/20 to-success/5"
+              },
+              {
+                icon: Shield,
+                title: "Secure & Private",
+                description: "Enterprise-grade security with full data encryption and compliance",
+                gradient: "from-warning/20 to-warning/5"
+              },
+            ].map((feature, index) => (
+              <Card 
+                key={index}
+                className="border-border/50 bg-card/50 backdrop-blur hover:shadow-[var(--shadow-glow)] transition-all duration-500 hover:scale-105 animate-fade-in-up group hover:-translate-y-3 relative overflow-hidden"
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
+                <div className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+                <CardHeader className="relative">
+                  <div className="w-14 h-14 rounded-2xl bg-[var(--gradient-primary)] flex items-center justify-center mb-4 animate-float group-hover:scale-110 transition-transform shadow-[var(--shadow-glow)]">
+                    <feature.icon className="w-7 h-7 text-primary-foreground" />
+                  </div>
+                  <CardTitle className="text-xl">{feature.title}</CardTitle>
+                  <CardDescription className="text-base leading-relaxed">
+                    {feature.description}
+                  </CardDescription>
+                </CardHeader>
+              </Card>
+            ))}
+          </div>
+        </div>
+
+        {/* CTA Section */}
+        <Card className="border-primary/30 bg-gradient-to-br from-card via-card/80 to-primary/5 backdrop-blur animate-scale-in hover:shadow-[var(--shadow-glow)] transition-all duration-500 overflow-hidden relative group">
+          <div className="absolute inset-0 bg-[var(--gradient-primary)] opacity-0 group-hover:opacity-10 transition-opacity duration-700" />
+          <CardContent className="p-12 md:p-16 text-center relative">
+            <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-[var(--gradient-primary)] mb-6 animate-pulse-glow">
+              <Sparkles className="w-8 h-8 text-primary-foreground" />
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-[var(--gradient-primary)] bg-clip-text text-transparent">
+              Ready to Transform Your Feedback?
+            </h2>
+            <p className="text-muted-foreground text-lg mb-8 max-w-2xl mx-auto leading-relaxed">
+              Join thousands of companies using FeedbackAI to understand their customers better and make data-driven decisions with confidence.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button 
+                size="lg"
+                onClick={() => navigate("/register")} 
+                className="text-lg px-10 py-6 hover:scale-110 transition-all duration-300 animate-pulse-glow bg-[var(--gradient-primary)] border-0 shadow-[var(--shadow-glow)]"
+              >
+                Create Your Account
+              </Button>
+              <Button 
+                size="lg"
+                variant="outline"
+                onClick={() => navigate("/login")} 
+                className="text-lg px-10 py-6 hover:scale-105 transition-all duration-300 border-border/50 backdrop-blur hover:bg-card/50"
+              >
+                Sign In
+              </Button>
+            </div>
           </CardContent>
         </Card>
       </main>
 
-      <footer className="container mx-auto px-4 py-8 text-center text-muted-foreground text-sm border-t border-border/50 mt-20 animate-fade-in">
-        <p>© 2025 FeedbackAI. Powered by Lovable Cloud & AI</p>
+      {/* Footer */}
+      <footer className="relative container mx-auto px-4 py-12 text-center border-t border-border/50 mt-20 animate-fade-in">
+        <div className="flex flex-col items-center gap-4">
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 rounded-lg bg-[var(--gradient-primary)] flex items-center justify-center">
+              <Sparkles className="w-4 h-4 text-primary-foreground" />
+            </div>
+            <span className="font-bold text-lg">FeedbackAI</span>
+          </div>
+          <p className="text-muted-foreground text-sm">
+            © 2025 FeedbackAI. Powered by Lovable Cloud & AI
+          </p>
+        </div>
       </footer>
     </div>
   );
