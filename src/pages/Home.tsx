@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useNavigate } from "react-router-dom";
 import { Brain, MessageSquare, BarChart3, Shield, Sparkles, Zap, TrendingUp, Users } from "lucide-react";
+import { AnimatedText } from "@/components/AnimatedText";
 
 export const Home = () => {
   const navigate = useNavigate();
@@ -10,9 +11,10 @@ export const Home = () => {
     <div className="min-h-screen bg-background relative overflow-hidden">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-primary/20 rounded-full blur-3xl animate-float" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/20 rounded-full blur-3xl animate-float [animation-delay:1s]" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/10 rounded-full blur-3xl animate-pulse-glow" />
+        <div className="absolute top-20 left-10 w-96 h-96 bg-primary/30 rounded-full blur-3xl animate-float" />
+        <div className="absolute bottom-20 right-10 w-[500px] h-[500px] bg-secondary/30 rounded-full blur-3xl animate-float [animation-delay:1s]" />
+        <div className="absolute top-40 right-20 w-72 h-72 bg-accent/25 rounded-full blur-3xl animate-float [animation-delay:2s]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-primary/15 rounded-full blur-3xl animate-pulse-glow" />
       </div>
 
       {/* Navigation */}
@@ -53,22 +55,37 @@ export const Home = () => {
 
       {/* Hero Section */}
       <main className="relative container mx-auto px-4 py-20">
-        <div className="text-center mb-20 space-y-6 animate-fade-in-up">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 backdrop-blur mb-4 animate-scale-in">
-            <Zap className="w-4 h-4 text-primary" />
-            <span className="text-sm font-medium text-primary">AI-Powered Intelligence</span>
+        <div className="text-center mb-20 space-y-8 animate-fade-in-up">
+          <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-primary/20 via-secondary/20 to-accent/20 border border-primary/30 backdrop-blur-xl mb-4 animate-scale-in shadow-[var(--shadow-glow)]">
+            <Sparkles className="w-5 h-5 text-primary animate-pulse-glow" />
+            <span className="text-sm font-semibold bg-[var(--gradient-primary)] bg-clip-text text-transparent">
+              Smart Feedback System
+            </span>
+            <Sparkles className="w-5 h-5 text-secondary animate-pulse-glow [animation-delay:0.5s]" />
           </div>
           
-          <h1 className="text-6xl md:text-8xl font-bold bg-[var(--gradient-primary)] bg-clip-text text-transparent leading-tight tracking-tight">
-            Transform Feedback
-            <br />
-            Into Insights
-          </h1>
+          <div className="relative">
+            <AnimatedText
+              text="Smart Feedback System"
+              animation="wave"
+              className="text-6xl md:text-8xl font-black bg-[var(--gradient-primary)] bg-clip-text text-transparent leading-tight tracking-tighter drop-shadow-2xl"
+              style={{
+                fontFamily: "'Space Grotesk', 'Inter', sans-serif",
+                letterSpacing: "-0.02em"
+              }}
+            />
+            <div className="absolute inset-0 blur-2xl opacity-40 bg-[var(--gradient-primary)]" />
+          </div>
           
-          <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+          <AnimatedText
+            text="Transform Feedback Into Actionable Insights"
+            animation="fadeIn"
+            className="text-2xl md:text-3xl font-semibold text-muted-foreground max-w-4xl mx-auto leading-relaxed"
+          />
+          
+          <p className="text-lg md:text-xl text-muted-foreground/80 max-w-3xl mx-auto leading-relaxed">
             Harness the power of AI to analyze customer sentiment in real-time.
-            <br />
-            Make data-driven decisions with confidence.
+            Make data-driven decisions with confidence and precision.
           </p>
         </div>
 
