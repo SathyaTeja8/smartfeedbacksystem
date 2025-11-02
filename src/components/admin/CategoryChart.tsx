@@ -44,9 +44,23 @@ export const CategoryChart = () => {
           {
             label: 'Feedback Count',
             data: counts,
-            backgroundColor: 'hsla(210, 100%, 56%, 0.8)',
-            borderColor: 'hsl(210, 100%, 56%)',
+            backgroundColor: [
+              'hsla(150, 60%, 35%, 0.8)',
+              'hsla(0, 65%, 45%, 0.8)',
+              'hsla(270, 65%, 55%, 0.8)',
+              'hsla(160, 55%, 40%, 0.8)',
+              'hsla(350, 60%, 50%, 0.8)',
+            ],
+            borderColor: [
+              'hsl(150, 60%, 35%)',
+              'hsl(0, 65%, 45%)',
+              'hsl(270, 65%, 55%)',
+              'hsl(160, 55%, 40%)',
+              'hsl(350, 60%, 50%)',
+            ],
             borderWidth: 2,
+            borderRadius: 8,
+            borderSkipped: false,
           },
         ],
       });
@@ -95,14 +109,15 @@ export const CategoryChart = () => {
   }
 
   return (
-    <Card className="backdrop-blur-sm bg-card/80 border-border/50 shadow-[var(--shadow-card)]">
-      <CardHeader>
-        <CardTitle className="text-2xl bg-[var(--gradient-primary)] bg-clip-text text-transparent">
+    <Card className="backdrop-blur-sm bg-card/80 border-border/50 shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-glow)] transition-all duration-300 relative overflow-hidden group">
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+      <CardHeader className="relative z-10">
+        <CardTitle className="text-2xl font-bold bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
           Feedback by Category
         </CardTitle>
-        <CardDescription>Distribution across categories</CardDescription>
+        <CardDescription className="text-muted-foreground/80">Distribution across categories</CardDescription>
       </CardHeader>
-      <CardContent className="h-80">
+      <CardContent className="h-80 relative z-10">
         {chartData && chartData.datasets[0].data.reduce((a: number, b: number) => a + b, 0) > 0 ? (
           <Bar 
             data={chartData} 
@@ -114,11 +129,22 @@ export const CategoryChart = () => {
                   display: false,
                 },
                 tooltip: {
-                  backgroundColor: 'hsl(240, 10%, 3.9%)',
+                  backgroundColor: 'hsla(240, 10%, 3.9%, 0.95)',
                   titleColor: 'hsl(0, 0%, 98%)',
                   bodyColor: 'hsl(0, 0%, 98%)',
-                  borderColor: 'hsl(210, 100%, 56%)',
-                  borderWidth: 1,
+                  borderColor: 'hsl(150, 60%, 35%)',
+                  borderWidth: 2,
+                  padding: 12,
+                  displayColors: true,
+                  boxPadding: 6,
+                  cornerRadius: 8,
+                  titleFont: {
+                    size: 14,
+                    weight: 'bold',
+                  },
+                  bodyFont: {
+                    size: 13,
+                  },
                 },
               },
               scales: {
@@ -127,19 +153,38 @@ export const CategoryChart = () => {
                   ticks: {
                     color: 'hsl(0, 0%, 98%)',
                     stepSize: 1,
+                    font: {
+                      size: 12,
+                      weight: 'bold',
+                    },
                   },
                   grid: {
-                    color: 'hsla(0, 0%, 98%, 0.1)',
+                    color: 'hsla(150, 60%, 35%, 0.1)',
+                    lineWidth: 1,
+                  },
+                  border: {
+                    color: 'hsla(150, 60%, 35%, 0.3)',
                   },
                 },
                 x: {
                   ticks: {
                     color: 'hsl(0, 0%, 98%)',
+                    font: {
+                      size: 12,
+                      weight: 'bold',
+                    },
                   },
                   grid: {
                     display: false,
                   },
+                  border: {
+                    color: 'hsla(150, 60%, 35%, 0.3)',
+                  },
                 },
+              },
+              interaction: {
+                mode: 'index',
+                intersect: false,
               },
             }}
           />
