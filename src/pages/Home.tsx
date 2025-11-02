@@ -55,7 +55,7 @@ export const Home = () => {
 
       {/* Hero Section */}
       <main className="relative container mx-auto px-4 py-20">
-        <div className="text-center mb-20 space-y-8 animate-fade-in-up">
+        <div className="text-center mb-16 space-y-8 animate-fade-in-up">
           <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-primary/20 via-secondary/20 to-accent/20 border border-primary/30 backdrop-blur-xl mb-4 animate-scale-in shadow-[var(--shadow-glow)]">
             <Sparkles className="w-5 h-5 text-primary animate-pulse-glow" />
             <span className="text-sm font-semibold bg-[var(--gradient-primary)] bg-clip-text text-transparent">
@@ -64,17 +64,16 @@ export const Home = () => {
             <Sparkles className="w-5 h-5 text-secondary animate-pulse-glow [animation-delay:0.5s]" />
           </div>
           
-          <div className="relative">
+          <div className="relative z-10">
             <AnimatedText
               text="Smart Feedback System"
               animation="wave"
-              className="text-6xl md:text-8xl font-black bg-[var(--gradient-primary)] bg-clip-text text-transparent leading-tight tracking-tighter drop-shadow-2xl"
+              className="text-6xl md:text-8xl font-black bg-[var(--gradient-primary)] bg-clip-text text-transparent leading-tight tracking-tighter"
               style={{
                 fontFamily: "'Space Grotesk', 'Inter', sans-serif",
                 letterSpacing: "-0.02em"
               }}
             />
-            <div className="absolute inset-0 blur-2xl opacity-40 bg-[var(--gradient-primary)]" />
           </div>
           
           <AnimatedText
@@ -87,6 +86,25 @@ export const Home = () => {
             Harness the power of AI to analyze customer sentiment in real-time.
             Make data-driven decisions with confidence and precision.
           </p>
+
+          {/* CTA Buttons directly under title */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+            <Button 
+              size="lg"
+              onClick={() => navigate("/register")} 
+              className="text-lg px-10 py-6 hover:scale-110 transition-all duration-300 animate-pulse-glow bg-[var(--gradient-primary)] border-0 shadow-[var(--shadow-glow)]"
+            >
+              Create Your Account
+            </Button>
+            <Button 
+              size="lg"
+              variant="outline"
+              onClick={() => navigate("/login")} 
+              className="text-lg px-10 py-6 hover:scale-105 transition-all duration-300 border-border/50 backdrop-blur hover:bg-card/50"
+            >
+              Sign In
+            </Button>
+          </div>
         </div>
 
         {/* Stats Section */}
@@ -182,23 +200,6 @@ export const Home = () => {
             <p className="text-muted-foreground text-lg mb-8 max-w-2xl mx-auto leading-relaxed">
               Join thousands of companies using FeedbackAI to understand their customers better and make data-driven decisions with confidence.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
-                size="lg"
-                onClick={() => navigate("/register")} 
-                className="text-lg px-10 py-6 hover:scale-110 transition-all duration-300 animate-pulse-glow bg-[var(--gradient-primary)] border-0 shadow-[var(--shadow-glow)]"
-              >
-                Create Your Account
-              </Button>
-              <Button 
-                size="lg"
-                variant="outline"
-                onClick={() => navigate("/login")} 
-                className="text-lg px-10 py-6 hover:scale-105 transition-all duration-300 border-border/50 backdrop-blur hover:bg-card/50"
-              >
-                Sign In
-              </Button>
-            </div>
           </CardContent>
         </Card>
       </main>
