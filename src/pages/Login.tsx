@@ -57,7 +57,7 @@ export const Login = () => {
     <div className="min-h-screen bg-gradient-to-br from-background via-secondary to-background flex items-center justify-center p-4">
       <Card className="w-full max-w-md border-border/50 bg-card/50 backdrop-blur shadow-[var(--shadow-card)]">
         <CardHeader className="space-y-1">
-          <CardTitle className="text-3xl text-center bg-[var(--gradient-primary)] bg-clip-text text-transparent">
+          <CardTitle className="text-3xl text-center bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
             Welcome Back
           </CardTitle>
           <CardDescription className="text-center">
