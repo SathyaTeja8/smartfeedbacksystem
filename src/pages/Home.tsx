@@ -22,10 +22,10 @@ export const Home = () => {
       <nav className="relative container mx-auto px-4 py-6 animate-fade-in">
         <div className="flex justify-between items-center backdrop-blur-xl bg-card/30 border border-border/50 rounded-2xl px-6 py-4 shadow-[var(--shadow-card)]">
           <div className="flex items-center gap-2">
-            <div className="w-10 h-10 rounded-xl bg-[var(--gradient-primary)] flex items-center justify-center animate-pulse-glow">
+            <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
               <Sparkles className="w-5 h-5 text-primary-foreground" />
             </div>
-            <h1 className="text-2xl font-bold bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+            <h1 className="text-2xl font-bold text-primary">
               FeedbackAI
             </h1>
           </div>
@@ -33,7 +33,7 @@ export const Home = () => {
             <Button 
               variant="outline" 
               onClick={() => navigate("/admin-login")} 
-              className="hover:scale-105 hover:shadow-[var(--shadow-glow)] transition-all duration-300 border-border/50 backdrop-blur"
+              className="hover:scale-105 transition-all duration-300 border-border/50 backdrop-blur"
             >
               Admin Login
             </Button>
@@ -46,7 +46,7 @@ export const Home = () => {
             </Button>
             <Button 
               onClick={() => navigate("/register")} 
-              className="hover:scale-105 transition-all duration-300 animate-pulse-glow bg-[var(--gradient-primary)] border-0"
+              className="hover:scale-105 transition-all duration-300 bg-primary text-primary-foreground border-0"
             >
               Get Started
             </Button>
@@ -57,19 +57,19 @@ export const Home = () => {
       {/* Hero Section */}
       <main className="relative container mx-auto px-4 py-20">
         <div className="text-center mb-16 space-y-8 animate-fade-in-up">
-          <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-primary/20 via-secondary/20 to-accent/20 border border-primary/30 backdrop-blur-xl mb-4 animate-scale-in shadow-[var(--shadow-glow)]">
-            <Sparkles className="w-5 h-5 text-primary animate-pulse-glow" />
-            <span className="text-sm font-semibold bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+          <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary/20 border border-primary/30 backdrop-blur-xl mb-4 animate-scale-in">
+            <Sparkles className="w-5 h-5 text-primary" />
+            <span className="text-sm font-semibold text-primary">
               Smart Feedback System
             </span>
-            <Sparkles className="w-5 h-5 text-secondary animate-pulse-glow [animation-delay:0.5s]" />
+            <Sparkles className="w-5 h-5 text-primary" />
           </div>
           
           <div className="relative z-10">
             <AnimatedText
               text="Smart Feedback System"
               animation="wave"
-              className="text-6xl md:text-8xl font-black bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent leading-tight tracking-tighter"
+              className="text-6xl md:text-8xl font-black text-primary leading-tight tracking-tighter"
               style={{
                 fontFamily: "'Space Grotesk', 'Inter', sans-serif",
                 letterSpacing: "-0.02em"
@@ -89,13 +89,12 @@ export const Home = () => {
           </p>
 
           {/* CTA Buttons directly under title */}
-          <div className="relative p-8 rounded-3xl border-2 border-primary/30 bg-gradient-to-br from-card/30 via-card/50 to-primary/5 backdrop-blur-xl shadow-[var(--shadow-glow)] animate-scale-in">
-            <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-primary/10 via-secondary/10 to-accent/10 animate-pulse-glow opacity-50" />
+          <div className="relative p-8 rounded-3xl border-2 border-primary/30 bg-card/50 backdrop-blur-xl animate-scale-in">
             <div className="relative flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
                 size="lg"
                 onClick={() => navigate("/register")} 
-                className="text-lg px-10 py-6 hover:scale-110 transition-all duration-300 animate-pulse-glow bg-gradient-to-r from-primary via-secondary to-accent border-0 shadow-[var(--shadow-glow)] text-primary-foreground"
+                className="text-lg px-10 py-6 hover:scale-110 transition-all duration-300 bg-primary text-primary-foreground border-0"
               >
                 Create Your Account
               </Button>
@@ -121,12 +120,12 @@ export const Home = () => {
           ].map((stat, index) => (
             <Card 
               key={index}
-              className="border-border/50 bg-card/50 backdrop-blur hover:shadow-[var(--shadow-glow)] transition-all duration-500 hover:scale-105 hover:-translate-y-2 animate-fade-in-up group"
+              className="border-border/50 bg-card/50 backdrop-blur transition-all duration-500 hover:scale-105 hover:-translate-y-2 animate-fade-in-up group"
               style={{ animationDelay: `${index * 100}ms` }}
             >
               <CardContent className="p-6 text-center">
                 <stat.icon className={`w-8 h-8 ${stat.color} mx-auto mb-3 animate-float group-hover:scale-110 transition-transform`} />
-                <div className="text-xl font-bold bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+                <div className="text-xl font-bold text-primary">
                   {stat.value}
                 </div>
                 <div className="text-sm text-muted-foreground mt-1">{stat.label}</div>
@@ -137,7 +136,7 @@ export const Home = () => {
 
         {/* Features Grid */}
         <div className="mb-20">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-4 bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-4 text-primary">
             Powerful Features
           </h2>
           <p className="text-center text-muted-foreground mb-12 text-lg">
@@ -173,12 +172,12 @@ export const Home = () => {
             ].map((feature, index) => (
               <Card 
                 key={index}
-                className="border-border/50 bg-card/50 backdrop-blur hover:shadow-[var(--shadow-glow)] transition-all duration-500 hover:scale-105 animate-fade-in-up group hover:-translate-y-3 relative overflow-hidden"
+                className="border-border/50 bg-card/50 backdrop-blur transition-all duration-500 hover:scale-105 animate-fade-in-up group hover:-translate-y-3 relative overflow-hidden"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 <div className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
                 <CardHeader className="relative">
-                  <div className="w-14 h-14 rounded-2xl bg-[var(--gradient-primary)] flex items-center justify-center mb-4 animate-float group-hover:scale-110 transition-transform shadow-[var(--shadow-glow)]">
+                  <div className="w-14 h-14 rounded-2xl bg-primary flex items-center justify-center mb-4 animate-float group-hover:scale-110 transition-transform">
                     <feature.icon className="w-7 h-7 text-primary-foreground" />
                   </div>
                   <CardTitle className="text-xl">{feature.title}</CardTitle>
@@ -192,13 +191,13 @@ export const Home = () => {
         </div>
 
         {/* CTA Section */}
-        <Card className="border-primary/30 bg-gradient-to-br from-card via-card/80 to-primary/5 backdrop-blur animate-scale-in hover:shadow-[var(--shadow-glow)] transition-all duration-500 overflow-hidden relative group">
-          <div className="absolute inset-0 bg-[var(--gradient-primary)] opacity-0 group-hover:opacity-10 transition-opacity duration-700" />
+        <Card className="border-primary/30 bg-card/80 backdrop-blur animate-scale-in transition-all duration-500 overflow-hidden relative group">
+          <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
           <CardContent className="p-12 md:p-16 text-center relative">
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-[var(--gradient-primary)] mb-6 animate-pulse-glow">
+            <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-primary mb-6">
               <Sparkles className="w-8 h-8 text-primary-foreground" />
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-primary">
               Ready to Transform Your Feedback?
             </h2>
             <p className="text-muted-foreground text-lg mb-8 max-w-2xl mx-auto leading-relaxed">
@@ -210,7 +209,7 @@ export const Home = () => {
         {/* Anonymous Feedback Section */}
         <div className="mt-20 animate-fade-in">
           <div className="text-center mb-8">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-primary">
               Try It Now - No Login Required
             </h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
@@ -227,7 +226,7 @@ export const Home = () => {
       <footer className="relative container mx-auto px-4 py-12 text-center border-t border-border/50 mt-20 animate-fade-in">
         <div className="flex flex-col items-center gap-4">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-[var(--gradient-primary)] flex items-center justify-center">
+            <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
               <Sparkles className="w-4 h-4 text-primary-foreground" />
             </div>
             <span className="font-bold text-lg">FeedbackAI</span>
