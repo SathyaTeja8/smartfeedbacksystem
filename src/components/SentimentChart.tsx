@@ -23,21 +23,22 @@ export const SentimentChart = () => {
       
       const counts = data?.map((item: any) => Number(item.count)) || [];
 
+      const colorMap: { [key: string]: { bg: string; border: string } } = {
+        'Positive': { bg: 'hsla(145, 65%, 50%, 0.8)', border: 'hsl(145, 65%, 50%)' },
+        'Negative': { bg: 'hsla(0, 70%, 55%, 0.8)', border: 'hsl(0, 70%, 55%)' },
+        'Neutral': { bg: 'hsla(45, 95%, 60%, 0.8)', border: 'hsl(45, 95%, 60%)' },
+      };
+
+      const backgroundColors = labels.map(label => colorMap[label]?.bg || 'hsla(190, 70%, 45%, 0.8)');
+      const borderColors = labels.map(label => colorMap[label]?.border || 'hsl(190, 70%, 45%)');
+
       setChartData({
         labels,
         datasets: [
           {
             data: counts,
-            backgroundColor: [
-              'hsla(150, 60%, 35%, 0.8)',
-              'hsla(0, 65%, 45%, 0.8)',
-              'hsla(270, 65%, 55%, 0.8)',
-            ],
-            borderColor: [
-              'hsl(150, 60%, 35%)',
-              'hsl(0, 65%, 45%)',
-              'hsl(270, 65%, 55%)',
-            ],
+            backgroundColor: backgroundColors,
+            borderColor: borderColors,
             borderWidth: 3,
             hoverOffset: 20,
             hoverBorderWidth: 4,
