@@ -3,6 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { useNavigate } from "react-router-dom";
 import { Brain, MessageSquare, BarChart3, Shield, Sparkles, Zap, TrendingUp, Users } from "lucide-react";
 import { AnimatedText } from "@/components/AnimatedText";
+import { FeedbackForm } from "@/components/FeedbackForm";
 
 export const Home = () => {
   const navigate = useNavigate();
@@ -113,10 +114,10 @@ export const Home = () => {
         {/* Stats Section */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20 animate-scale-in">
           {[
-            { icon: Users, label: "Active Users", value: "10K+", color: "text-primary" },
-            { icon: MessageSquare, label: "Feedback Analyzed", value: "1M+", color: "text-accent" },
-            { icon: TrendingUp, label: "Accuracy Rate", value: "99.9%", color: "text-success" },
-            { icon: Zap, label: "Response Time", value: "<100ms", color: "text-warning" },
+            { icon: Users, label: "Active Users", value: "Trusted Platform", color: "text-primary" },
+            { icon: MessageSquare, label: "Feedback Analyzed", value: "Instant Analysis", color: "text-accent" },
+            { icon: TrendingUp, label: "Accuracy Rate", value: "High Precision", color: "text-success" },
+            { icon: Zap, label: "Response Time", value: "Lightning Fast", color: "text-warning" },
           ].map((stat, index) => (
             <Card 
               key={index}
@@ -125,7 +126,7 @@ export const Home = () => {
             >
               <CardContent className="p-6 text-center">
                 <stat.icon className={`w-8 h-8 ${stat.color} mx-auto mb-3 animate-float group-hover:scale-110 transition-transform`} />
-                <div className="text-3xl font-bold bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+                <div className="text-xl font-bold bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
                   {stat.value}
                 </div>
                 <div className="text-sm text-muted-foreground mt-1">{stat.label}</div>
@@ -205,6 +206,21 @@ export const Home = () => {
             </p>
           </CardContent>
         </Card>
+
+        {/* Anonymous Feedback Section */}
+        <div className="mt-20 animate-fade-in">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+              Try It Now - No Login Required
+            </h2>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+              Experience our AI-powered sentiment analysis instantly. Submit anonymous feedback and see the magic happen.
+            </p>
+          </div>
+          <div className="max-w-2xl mx-auto">
+            <FeedbackForm />
+          </div>
+        </div>
       </main>
 
       {/* Footer */}
