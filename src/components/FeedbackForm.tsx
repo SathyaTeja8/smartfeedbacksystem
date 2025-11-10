@@ -7,6 +7,37 @@ import { Loader2, Send, Sparkles, Bug, Lightbulb, HelpCircle, MessageCircle } fr
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 
+// Simple sentiment analysis function
+function analyzeSentiment(text: string): { sentiment: string; score: number } {
+  if (!text || text.trim().length === 0) {
+    return { sentiment: 'neutral', score: 0 };
+  }
+
+  const lowerText = text.toLowerCase();
+  
+  const positiveWords = ['good', 'great', 'excellent', 'amazing', 'wonderful', 'fantastic', 'love', 'best', 'awesome', 'happy', 'perfect', 'nice', 'thank', 'thanks'];
+  const negativeWords = ['bad', 'terrible', 'awful', 'horrible', 'hate', 'worst', 'poor', 'disappointing', 'frustrated', 'angry', 'broken', 'useless', 'fail'];
+  
+  let positiveCount = 0;
+  let negativeCount = 0;
+  
+  for (const word of positiveWords) {
+    if (lowerText.includes(word)) positiveCount++;
+  }
+  
+  for (const word of negativeWords) {
+    if (lowerText.includes(word)) negativeCount++;
+  }
+  
+  if (positiveCount > negativeCount) {
+    return { sentiment: 'positive', score: 0.7 };
+  } else if (negativeCount > positiveCount) {
+    return { sentiment: 'negative', score: -0.7 };
+  } else {
+    return { sentiment: 'neutral', score: 0 };
+  }
+}
+
 interface FeedbackFormProps {
   onFeedbackSubmitted?: () => void;
 }
@@ -44,15 +75,28 @@ export const FeedbackForm = ({ onFeedbackSubmitted }: FeedbackFormProps) => {
       const userId = session?.user?.id || null;
       const isAnonymous = !session;
 
-      const { data, error } = await supabase.functions.invoke('analyze-sentiment', {
-        body: { message, userId, isAnonymous, category }
-      });
+      // Analyze sentiment locally
+      const sentimentResult = analyzeSentiment(message);
+
+      // Insert directly into database
+      const { data, error } = await supabase
+        .from('feedback')
+        .insert({
+          user_id: userId,
+          message: message,
+          sentiment: sentimentResult.sentiment,
+          sentiment_score: sentimentResult.score,
+          is_anonymous: isAnonymous,
+          category: category
+        })
+        .select()
+        .single();
 
       if (error) throw error;
 
       toast({
         title: "Feedback submitted!",
-        description: `Sentiment detected: ${data.sentiment}`,
+        description: `Sentiment detected: ${sentimentResult.sentiment}`,
       });
 
       setMessage("");

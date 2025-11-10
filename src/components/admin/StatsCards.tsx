@@ -10,14 +10,14 @@ interface StatsCardsProps {
 
 export const StatsCards = ({ totalUsers, totalFeedback, averageSentiment, feedbackToday }: StatsCardsProps) => {
   const getSentimentLabel = (score: number) => {
-    if (score >= 0.6) return "Positive";
-    if (score >= 0.4) return "Neutral";
+    if (score > 0.1) return "Positive";
+    if (score >= -0.1) return "Neutral";
     return "Negative";
   };
 
   const getSentimentColor = (score: number) => {
-    if (score >= 0.6) return "text-success";
-    if (score >= 0.4) return "text-warning";
+    if (score > 0.1) return "text-success";
+    if (score >= -0.1) return "text-warning";
     return "text-destructive";
   };
 
@@ -54,7 +54,7 @@ export const StatsCards = ({ totalUsers, totalFeedback, averageSentiment, feedba
           <div className={`text-2xl font-bold ${getSentimentColor(averageSentiment)}`}>
             {getSentimentLabel(averageSentiment)}
           </div>
-          <p className="text-xs text-muted-foreground">Overall mood: {(averageSentiment * 100).toFixed(0)}%</p>
+          <p className="text-xs text-muted-foreground">Overall mood: {(((averageSentiment + 1) / 2) * 100).toFixed(0)}%</p>
         </CardContent>
       </Card>
 

@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useNavigate } from "react-router-dom";
-import { Brain, MessageSquare, BarChart3, Shield, Sparkles, Zap, TrendingUp, Users } from "lucide-react";
+import { Brain, MessageSquare, BarChart3, Shield, Sparkles, TrendingUp, Users, FileText, Zap } from "lucide-react";
 import { AnimatedText } from "@/components/AnimatedText";
 import { FeedbackForm } from "@/components/FeedbackForm";
 
@@ -23,7 +23,7 @@ export const Home = () => {
         <div className="flex justify-between items-center backdrop-blur-xl bg-card/30 border border-border/50 rounded-2xl px-6 py-4 shadow-[var(--shadow-card)]">
           <div className="flex items-center gap-2">
             <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
-              <Sparkles className="w-5 h-5 text-primary-foreground" />
+              <FileText className="w-5 h-5 text-primary-foreground" />
             </div>
             <h1 className="text-2xl font-bold text-primary">
               FeedbackAI
@@ -57,14 +57,8 @@ export const Home = () => {
       {/* Hero Section */}
       <main className="relative container mx-auto px-4 py-20">
         <div className="text-center mb-16 space-y-8 animate-fade-in-up">
-          <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary/20 border border-primary/30 backdrop-blur-xl mb-4 animate-scale-in">
-            <Sparkles className="w-5 h-5 text-primary" />
-            <span className="text-sm font-semibold text-primary">
-              Smart Feedback System
-            </span>
-            <Sparkles className="w-5 h-5 text-primary" />
-          </div>
-          
+        
+      
           <div className="relative z-10">
             <AnimatedText
               text="Smart Feedback System"
@@ -116,7 +110,7 @@ export const Home = () => {
             { icon: Users, label: "Active Users", value: "Trusted Platform", color: "text-primary" },
             { icon: MessageSquare, label: "Feedback Analyzed", value: "Instant Analysis", color: "text-accent" },
             { icon: TrendingUp, label: "Accuracy Rate", value: "High Precision", color: "text-success" },
-            { icon: Zap, label: "Response Time", value: "Lightning Fast", color: "text-warning" },
+            { icon: Zap, label: "Response Time", value: "Lightning Fast", color: "text-yellow-300" },
           ].map((stat, index) => (
             <Card 
               key={index}
@@ -195,7 +189,7 @@ export const Home = () => {
           <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
           <CardContent className="p-12 md:p-16 text-center relative">
             <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-primary mb-6">
-              <Sparkles className="w-8 h-8 text-primary-foreground" />
+              <FileText className="w-8 h-8 text-primary-foreground" />
             </div>
             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-primary">
               Ready to Transform Your Feedback?
@@ -227,12 +221,12 @@ export const Home = () => {
         <div className="flex flex-col items-center gap-4">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-              <Sparkles className="w-4 h-4 text-primary-foreground" />
+              <FileText className="w-4 h-4 text-primary-foreground" />
             </div>
             <span className="font-bold text-lg">FeedbackAI</span>
           </div>
           <p className="text-muted-foreground text-sm">
-            © 2025 FeedbackAI. Powered by Lovable Cloud & AI
+            ©Based on Sentiment Analysis - Smart Feedback System 2025
           </p>
         </div>
       </footer>

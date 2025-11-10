@@ -35,7 +35,7 @@ export const Dashboard = () => {
     const { data: { session } } = await supabase.auth.getSession();
     
     if (!session) {
-      navigate("/auth");
+      navigate("/login");
       return;
     }
 
@@ -52,7 +52,7 @@ export const Dashboard = () => {
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
       if (event === "SIGNED_OUT") {
-        navigate("/auth");
+        navigate("/login");
       }
       setUser(session?.user ?? null);
     });
@@ -103,11 +103,11 @@ export const Dashboard = () => {
       <div className="container mx-auto px-4 py-8">
         <header className="mb-12 flex justify-between items-start animate-fade-in-up">
           <div>
-            <h1 className="text-4xl md:text-5xl font-bold bg-[var(--gradient-primary)] bg-clip-text text-transparent mb-2 animate-pulse-glow">
+            <h1 className="text-4xl md:text-3xl font-bold bg-gradient-to-r from-[hsl(190,70%,45%)] to-[hsl(270,60%,50%)] bg-clip-text text-transparent mb-2 animate-pulse-glow inline-block border-2 border-[hsl(190,70%,45%)] rounded-lg px-4 py-2">
               Share Your Feedback
             </h1>
-            <p className="text-muted-foreground animate-fade-in">
-              Help us improve with your valuable insights
+            <p className="text-muted-foreground animate-fade-in mt-1">
+                  Help us improve with your valuable insights
             </p>
           </div>
           <div className="flex gap-3">
@@ -138,7 +138,7 @@ export const Dashboard = () => {
         </div>
 
         <footer className="text-center text-muted-foreground text-sm mt-12 pb-8 animate-fade-in">
-          <p>Powered by AI sentiment analysis • Built with React & Lovable Cloud</p>
+          <p>Smart Feedback System 2025 • Powered by AI sentiment analysis </p>
         </footer>
       </div>
     </div>

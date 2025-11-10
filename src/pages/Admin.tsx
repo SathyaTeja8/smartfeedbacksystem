@@ -72,7 +72,7 @@ export const Admin = () => {
       const { data: { session } } = await supabase.auth.getSession();
       
       if (!session) {
-        navigate("/auth");
+        navigate("/admin-login");
         return;
       }
 
@@ -98,7 +98,7 @@ export const Admin = () => {
       loadUsers();
       loadStats();
     } catch (error) {
-      navigate("/auth");
+      navigate("/admin-login");
     }
   };
 
@@ -237,10 +237,10 @@ export const Admin = () => {
       <div className="container mx-auto px-4 py-8">
         <div className="flex justify-between items-center mb-8 animate-fade-in-up">
           <div>
-            <h1 className="text-4xl font-bold bg-[var(--gradient-primary)] bg-clip-text text-transparent mb-2 animate-pulse-glow">
+            <h1 className="text-3xl font-bold bg-gradient-to-r from-[hsl(190,70%,45%)] to-[hsl(270,60%,50%)] bg-clip-text text-transparent mb-2 animate-pulse-glow inline-block border-2 border-[hsl(190,70%,45%)] rounded-lg px-4 py-2">
               Analytics Dashboard
             </h1>
-            <p className="text-muted-foreground animate-fade-in">Monitor feedback, users, and insights</p>
+            <p className="text-muted-foreground animate-fade-in mt-1">Monitor feedback, users, and insights</p>
           </div>
           <div className="flex gap-3">
             <Button variant="outline" onClick={() => navigate("/dashboard")} className="hover:scale-105 transition-transform">
