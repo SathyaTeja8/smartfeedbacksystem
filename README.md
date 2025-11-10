@@ -286,9 +286,8 @@ SOFTWARE.
 
 **Sathya Teja** - Synthetic AI-Powered Sentiment Analysis
 
-- GitHub: [@yourusername](https://github.com/yourusername)
-- LinkedIn: [Your LinkedIn](https://linkedin.com/in/yourprofile)
-- Email: [your.email@example.com](mailto:your.email@example.com)
+- GitHub: [@SathyaTeja8](https://github.com/SathyaTeja8)
+- Email: [ganntejas26@gmail.com](mailto:ganntejas26@gmail.com)
 
 ## 🙏 Acknowledgments
 
